@@ -9,12 +9,12 @@ public class Hello {
 
         for (int i = 0; i < N; i++) {
             int val = sc.nextInt();
-            matrix[i][0] = val;
+            matrix[i][0] += val;
             matrix[i][1] += val;
         }
 
         for (int i = 0; i < N; i++) {
-            if ((matrix[i][0] == 1 && matrix[i][1] == N) || (matrix[i][0] == N - 1)) {
+            if ((matrix[i][0] == 1 && matrix[i][1] == N) || (matrix[i][0]==0 && matrix[i][0] == N - 1)) {
                 System.out.println(i+1);
                 System.exit(0);
             }
