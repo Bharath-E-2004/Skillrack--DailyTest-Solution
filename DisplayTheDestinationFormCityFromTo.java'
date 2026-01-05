@@ -1,0 +1,91 @@
+import java.util.*;
+
+public class Hello {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int N = Integer.parseInt(sc.nextLine());
+        String[] routes = new String[N];
+
+        for (int i = 0; i < N; i++) {
+            routes[i] = sc.nextLine();
+        }
+
+        String city = sc.nextLine();
+
+        // -------- FROM city --------
+        List<String> result = new ArrayList<>();
+        boolean found = false;
+
+        System.out.print(city + " -> ");
+
+        for (String s : routes) {
+            String[] parts = s.split(" ");
+            if (parts[0].equals(city) && !result.contains(parts[1])) {
+                System.out.print(parts[1] + " ");
+                result.add(parts[1]);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.print("-1");
+        }
+
+        // -------- TO city --------
+        System.out.print("\n" + city + " <- ");
+        result.clear();
+        found = false;
+
+        for (String s : routes) {
+            String[] parts = s.split(" ");
+            if (parts[1].equals(city) && !result.contains(parts[0])) {
+                System.out.print(parts[0] + " ");
+                result.add(parts[0]);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.print("-1");
+        }
+    }
+}
+
+/*
+The program must accept the source city and the destination city of N buses as the input. The name of a city C is also passed as the input. The program must print the output based on the following conditions.
+
+- The program must print the name of the city C and all the cities where the people can go directly from the city C. If there are no buses to go from the city C, then the program must print -1 as the output.
+
+- Similarly, the program must print the name of the city C and all the cities from which the people can come directly to the city C. If there are no direct buses to come to the city C, then the program must print -1 as the output.
+
+Note: The names of the cities must be printed in the order of their occurrence.
+
+Boundary Condition(s):
+
+1<= N <= 100
+
+1 <= Length of each city's name <= 30
+
+Input Format:
+
+The first line contains N.
+
+The next N lines, each contains the source city and the destination city of a bus separated by a
+
+space.
+
+Output Format:
+
+The first 2 lines contain the string values based on the given conditions.
+
+Example Input/Output 1:
+
+Input:
+
+8 Chennai Bangalore Trichy Hosur Chennai Coimbatore Bangalore Chennai Chennai Trichy Chennai Hyderabad Bangalore Hyderabad Trichy Chennai Chennai
+
+Output: Chennai -> Bangalore Coimbatore Trichy Hyderabad Chennai <- Bangalore Trichy
+*/
