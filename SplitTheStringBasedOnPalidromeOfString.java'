@@ -1,0 +1,69 @@
+import java.util.*;
+
+public class Hello {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        int len = s.length();
+
+        for (int i = 0; i < len - 1; i++) {
+            if (isPalindrome(0, i, s) && isPalindrome(i + 1, len - 1, s)) {
+                System.out.println(s.substring(0, i + 1));
+                System.out.println(s.substring(i + 1));
+                break;
+            }
+        }
+    }
+
+    public static boolean isPalindrome(int start, int end, String s) {
+        while (start < end) {
+            if (s.charAt(start) != s.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+}
+/*
+The program must accept a string S as the input. The string S is not a palindrome but it is formed by concatenating two palindromes. The program must split the string S into two palindromes and print the palindromes in separate lines as the output.
+
+Boundary Condition(s):
+
+2 <= Length of S <= 1000
+
+Input Format:
+
+The first line contains S.
+
+Output Format:
+
+The first line contains a string value representing the first palindrome. The second line contains a string value representing the second palindrome.
+
+Example Input/Output 1:
+
+Input:
+
+madamabba
+
+Output: madam abba
+
+Explanation:
+
+Here the given string is madamabba.
+
+The string values madam and abba are palindrome, so madam and abba are printed in separate lines.
+
+Example Input/Output 2:
+
+Input:
+
+eyerotator
+
+Output
+
+eye rotator
+*/
