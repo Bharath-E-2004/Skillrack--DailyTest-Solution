@@ -1,0 +1,109 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int N = sc.nextInt();
+        String[] arr = new String[N];
+
+        for (int i = 0; i < N; i++) {
+            arr[i] = sc.next();
+        }
+
+        int K = sc.nextInt();
+        StringBuilder result = new StringBuilder();
+
+        boolean remaining = true;
+
+        while (remaining) {
+            remaining = false;
+
+            for (int i = 0; i < N; i++) {
+
+                if (arr[i].length() == 0) continue;
+
+                remaining = true;
+
+                // Odd position (1-based)
+                if (i % 2 == 0) {
+                    if (arr[i].length() >= K) {
+                        result.append(arr[i].substring(0, K));
+                        arr[i] = arr[i].substring(K);
+                    } else {
+                        result.append(arr[i]);
+                        arr[i] = "";
+                        K++;
+                    }
+                }
+                // Even position (1-based)
+                else {
+                    int len = arr[i].length();
+                    if (len >= K) {
+                        result.append(arr[i].substring(len - K));
+                        arr[i] = arr[i].substring(0, len - K);
+                    } else {
+                        result.append(arr[i]);
+                        arr[i] = "";
+                        K++;
+                    }
+                }
+            }
+        }
+
+        System.out.print(result.toString());
+    }
+}
+
+/*
+The program must accept N string values and an integer K as the input. The program must form a string S based on the following conditions.
+
+-The string S is formed by concatenating the first K characters from the string values present in the odd positions and the last K characters from the string values present in the even positions alternatively.
+
+- Once K characters are used from the string values, they must be removed from the string values.
+
+Similarly, the program must repeat the above processes until all the characters are removed from all the string values. If the number of characters in a string is less than K, then all the characters from the string must be used and removed from that string, and then the value of K
+
+must be incremented by 1. Finally, the program must print the string S as the output.
+
+Boundary Condition(s):
+
+2<= N <= 100
+
+1<= Length of each string <= 100
+
+1<= K <= 20
+
+Input Format:
+
+The first line contains N.
+
+The next N lines, each contains a string value.
+
+The N+2nd line contains K.
+
+Output Format:
+
+The first line contains S.
+
+Example Input/Output 1:
+
+Input:
+
+4
+
+skillrack
+
+coding
+
+pythonprogramming
+
+2computers
+
+4
+
+Output:
+
+skildingpythtersiraccoonprocompukgrammin2g
+*/
